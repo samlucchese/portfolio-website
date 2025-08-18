@@ -1,0 +1,25 @@
+# Node.js dependencies
+node_modules/
+package-lock.json
+
+# Gulp output / build
+dist/
+*.log
+
+# Sass cache / compiled output
+.sass-cache/
+*.css
+*.css.map
+
+# Keep main WordPress style.css for theme metadata
+!style.css
+
+# Editor/OS/System files
+.DS_Store
+Thumbs.db
+
+
+# Other temp or misc
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
