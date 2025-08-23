@@ -138,61 +138,35 @@ add_action( 'widgets_init', 'samlucchese_widgets_init' );
 
 
 
-function samlucchese_enqueue_styles() {
-	wp_enqueue_style(
-		'samlucchese-main-style',
-		get_template_directory_uri() . '/dist/css/style.css',
-		[],
-		filemtime(get_template_directory() . '/dist/css/style.css')
-	);
-}
-add_action('wp_enqueue_scripts', 'samlucchese_enqueue_styles');
 
 
-
-
-
-
-
-
-
-
-
-/**
- * Enqueue scripts and styles.
- */
-function samlucchese_scripts() {
-	wp_enqueue_style( 'samlucchese-style', get_stylesheet_uri(), array(), _S_VERSION );
-	wp_style_add_data( 'samlucchese-style', 'rtl', 'replace' );
-
-	wp_enqueue_script( 'samlucchese-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
-
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
-	}
-}
-add_action( 'wp_enqueue_scripts', 'samlucchese_scripts' );
-
-require get_template_directory() . '/inc/custom-post-type.php';
+require get_template_directory() . '/functions/custom-post-type.php';
 
 /**
  * Implement the Custom Header feature.
  */
-require get_template_directory() . '/inc/custom-header.php';
+require get_template_directory() . '/functions/custom-header.php';
 
 /**
  * Custom template tags for this theme.
  */
-require get_template_directory() . '/inc/template-tags.php';
+require get_template_directory() . '/functions/template-tags.php';
 
 /**
  * Functions which enhance the theme by hooking into WordPress.
  */
-require get_template_directory() . '/inc/template-functions.php';
+require get_template_directory() . '/functions/template-functions.php';
 
+require get_template_directory() . '/functions/enqueue-scripts.php';
+
+require get_template_directory() . '/functions/theme-support.php';
+
+require_once get_stylesheet_directory() . '/assets/styles/css/global-styles.php';
+
+require get_template_directory() . '/functions/theme-register-core-gutenberg-styles.php';
 /**
  * Customizer additions.
  */
-require get_template_directory() . '/inc/customizer.php';
+require get_template_directory() . '/functions/customizer.php';
 
 

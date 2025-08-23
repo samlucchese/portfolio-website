@@ -1,7 +1,28 @@
+@import 'acf-variables';
+
+
 /* --------------------------------------------- 
 buttons, cards, nav, etc.
 --------------------------------------------- */
-
+.site-header{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: auto;
+	margin-right: 25px;
+	.site-branding{
+	}
+	#site-navigation{
+		.menu-main-menu-container{
+			ul#primary-menu{
+				gap: 15px;
+			}
+		}
+	}
+	.site-logo{
+		max-width: 75px;
+	}
+}
 .sticky {
 	display: block;
 }
@@ -90,7 +111,6 @@ buttons, cards, nav, etc.
 // Main Navigation 
 .main-navigation {
 	display: block;
-	width: 100%;
 
 	ul {
 		display: none;

@@ -1,5 +1,92 @@
 <?php 
 
+// Register Theme Settings CPT
+add_action('init', function () {
+	register_post_type('theme_settings', [
+		'labels' => [
+			'name'          => 'Theme Settings',
+			'singular_name' => 'Theme Settings',
+			'menu_name'     => 'Theme Settings',
+			'edit_item'     => 'Edit Theme Settings',
+			'add_new_item'  => 'Theme Settings',
+			'add_new'       => 'Theme Settings',
+		],
+		'public'        => false,
+		'show_ui'       => true,
+		'show_in_menu'  => true,
+		'menu_position' => 61,
+		'menu_icon'     => 'dashicons-admin-generic',
+		'supports'      => ['title'],
+		'capability_type' => 'page',
+	]);
+});
+
+// Enforce singleton (always one post only)
+add_action('admin_init', function () {
+	$screen = get_current_screen();
+	if (!$screen || $screen->post_type !== 'theme_settings') {
+		return;
+	}
+
+	$existing = get_posts([
+		'post_type'      => 'theme_settings',
+		'posts_per_page' => 1,
+	]);
+
+	// If no post exists, create it
+	if (!$existing) {
+		$id = wp_insert_post([
+			'post_type'   => 'theme_settings',
+			'post_title'  => 'Theme Settings',
+			'post_status' => 'publish',
+		]);
+		wp_redirect(admin_url("post.php?post=$id&action=edit"));
+		exit;
+	}
+
+	// If user tries "Add New", redirect to the one existing
+	if ($screen->action === 'add') {
+		$id = $existing[0]->ID;
+		wp_redirect(admin_url("post.php?post=$id&action=edit"));
+		exit;
+	}
+});
+
+// Hide title field, keep Save button
+add_action('admin_head', function () {
+	$screen = get_current_screen();
+	if ($screen && $screen->post_type === 'theme_settings') {
+		echo '<style>
+			#titlediv { display: none !important; }
+		</style>';
+	}
+});
+
+// Rename Publish/Update → Save Settings
+add_filter('gettext', function ($translation, $text, $domain) {
+	global $pagenow, $typenow;
+	if ($typenow === 'theme_settings' && $pagenow === 'post.php') {
+		if (in_array($text, ['Publish','Update'], true)) {
+			return 'Save Settings';
+		}
+	}
+	return $translation;
+}, 10, 3);
+
+// Fetch a field from the Theme Settings singleton
+function get_the_field($field_name) {
+	$post = get_posts([
+		'post_type'      => 'theme_settings',
+		'posts_per_page' => 1,
+	]);
+	if (!$post) return;
+
+	return get_field($field_name, $post[0]->ID);
+}
+ 
+
+
+
 
 
 function projects_cpt() {

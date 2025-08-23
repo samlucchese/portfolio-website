@@ -15,33 +15,33 @@
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="profile" href="https://gmpg.org/xfn/11">
 
 	<?php wp_head(); ?>
+	
+	<?php // Register site fonts currently loading from /assets/fonts/ testing performance via local vs external request    
+	$typography = get_the_field('typography'); // returns the whole group as an array
+	
+	if (!empty($typography['custom_font_link'])): ?>
+	  <link rel="preload" href="<?php echo esc_url($typography['custom_font_link']); ?>" as="style" onload="this.rel='stylesheet'">
+	  <noscript><link rel="stylesheet" href="<?php echo esc_url($typography['custom_font_link']); ?>"></noscript>
+	<?php endif; ?>
+
+	
+	
 </head>
 
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 <div id="page" class="site">
 	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'samlucchese' ); ?></a>
-
-	<header id="masthead" class="site-header">
+	
+	<header class="site-header">
 		<div class="site-branding">
-			<?php
-			the_custom_logo();
-			if ( is_front_page() && is_home() ) :
-				?>
-				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-				<?php
-			else :
-				?>
-				<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
-				<?php
-			endif;
-			$samlucchese_description = get_bloginfo( 'description', 'display' );
-			if ( $samlucchese_description || is_customize_preview() ) :
-				?>
-				<p class="site-description"><?php echo $samlucchese_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
+			<?php if ( get_the_field('logo') ) : 
+				$logo = get_the_field('logo'); ?>
+				<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><img class="site-logo" src="<?php echo $logo['url']; ?>"></a>
+			<?php else : ?>
+			  <a href="<?php echo home_url(); ?>"><?php bloginfo('name'); ?></a>
 			<?php endif; ?>
 		</div><!-- .site-branding -->
 

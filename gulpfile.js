@@ -8,7 +8,7 @@ const browserSync = require('browser-sync').create();
 const paths = {
   scss: 'assets/styles/scss/**/*.scss',
   scssEntry: 'assets/styles/scss/style.scss',
-  cssOutput: 'dist/css',
+  cssOutput: 'assets/styles/css',
   proxy: 'local.samlucchese.com'
 };
 
