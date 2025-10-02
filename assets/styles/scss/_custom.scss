@@ -1,3 +1,47 @@
+@import 'acf-variables';
+
 /* --------------------------------------------- 
 site-specific tweaks, overrides
 --------------------------------------------- */
+
+
+//General Theme Settings
+
+//typography - headings 
+ h1,
+ h2,
+ h3,
+ h4,
+ h5,
+ h6 {
+	 font-family: var(--global-header-font-family);
+ }
+ body{
+	 p{
+		 font-family: var(--global-font-family);
+	 }
+ }
+
+
+body{
+	padding: 0 25px;
+	background-color: $primary-color;
+	color: white;
+	a{
+		color: lightgrey;
+		&:hover{
+			color: grey;
+		}
+		&:visited{
+			color: grey;
+		}
+	}
+}
+
+main{
+	min-height: 100vh;
+	.main-inner{
+		max-width: 1200px;
+		margin: 0 auto;
+	}
+}

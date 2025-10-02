@@ -27,7 +27,10 @@
 	<?php endif; ?>
 
 	
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
 	
+	<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
 </head>
 
 <body <?php body_class(); ?>>
@@ -36,26 +39,28 @@
 	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'samlucchese' ); ?></a>
 	
 	<header class="site-header">
-		<div class="site-branding">
-			<?php if ( get_the_field('logo') ) : 
-				$logo = get_the_field('logo'); ?>
-				<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><img class="site-logo" src="<?php echo $logo['url']; ?>"></a>
-			<?php else : ?>
-			  <a href="<?php echo home_url(); ?>"><?php bloginfo('name'); ?></a>
-			<?php endif; ?>
-		</div><!-- .site-branding -->
-
-		<nav id="site-navigation" class="main-navigation">
-			<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'samlucchese' ); ?></button>
-			<?php
-			wp_nav_menu(
-				array(
-					'theme_location' => 'menu-1',
-					'menu_id'        => 'primary-menu',
-				)
-			);
-			?>
-		</nav><!-- #site-navigation -->
+		<div class="nav-wrap">
+			<div class="site-branding">
+				<?php if ( get_the_field('logo') ) : 
+					$logo = get_the_field('logo'); ?>
+					<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><img class="site-logo" src="<?php echo $logo['url']; ?>"></a>
+				<?php else : ?>
+				  <a href="<?php echo home_url(); ?>"><?php bloginfo('name'); ?></a>
+				<?php endif; ?>
+			</div><!-- .site-branding -->
+			
+			<nav id="site-navigation" class="main-navigation">
+				<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'samlucchese' ); ?></button>
+				<?php
+				wp_nav_menu(
+					array(
+						'theme_location' => 'menu-1',
+						'menu_id'        => 'primary-menu',
+					)
+				);
+				?>
+			</nav><!-- #site-navigation -->
+		</div>
 	</header><!-- #masthead -->
 
 

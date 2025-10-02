@@ -11,23 +11,3 @@ if( function_exists('acf_add_options_page') ) {
 	));
 }
 
-function setup_theme_colors() {
-	add_theme_support('editor-color-palette', array(
-		array(
-			'name'  => __('Primary', 'samlucchese'),
-			'slug'  => 'primary',
-			'color' => '#0055ff',
-		),
-		array(
-			'name'  => __('Secondary', 'samlucchese'),
-			'slug'  => 'secondary',
-			'color' => '#ff4081',
-		),
-		array(
-			'name'  => __('Light Gray', 'samlucchese'),
-			'slug'  => 'light-gray',
-			'color' => '#eeeeee',
-		),
-	));
-}
-add_action('after_setup_theme', 'setup_theme_colors');

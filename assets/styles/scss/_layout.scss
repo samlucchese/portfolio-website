@@ -1,8 +1,24 @@
+@import 'acf-variables';
+
 /* --------------------------------------------- 
 structure, grid, container, spacing
 --------------------------------------------- */
 // content-sidebar
 
-main{
-	min-height: 100vh;
+
+footer{
+	#three-col-subfooter{
+		.kt-row-column-wrap{
+			.wp-block-kadence-column{
+				.kt-inside-inner-col{
+					h3{
+						margin-bottom: 15px;
+					}
+					display: flex;
+					margin: 0 auto;
+				}
+			}
+		}
+		
+	}
 }
