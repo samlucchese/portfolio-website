@@ -6,8 +6,9 @@ buttons, cards, nav, etc.
 --------------------------------------------- */
 .site-header{
 
-	width: auto;
-	
+	position: fixed; 
+	width: 100%;
+	left: 0;
 	
 	.nav-wrap{
 		width: 100%;
@@ -36,6 +37,10 @@ buttons, cards, nav, etc.
 	}
 }
 
+main{
+	padding-top: 75px;
+}
+
 
 
 
@@ -47,13 +52,50 @@ buttons, cards, nav, etc.
 .kadence-swiper-template{
 	// max-width: 100%;
 	overflow: visible !important;
+	max-width: 100%;
+	width: 100%;
+	height: 400px;
 	.swiper-wrapper{
 		
 		display: flex !important;
 		flex-direction: row !important;
 		gap: 0px !important;
+		justify-content: unset !important;
+		
+		.swiper-slide{
+			// margin-right: 50px;
+			// width: auto !important;
+		}
 	}
 }
+
+/* Scope to your swiper container */
+.kadence-swiper-template.swiper .swiper-wrapper { display: flex; }
+
+.kadence-swiper-template.swiper .swiper-slide {
+  box-sizing: border-box;
+  /* Let Swiper’s inline width win */
+  width: auto;          /* Kadence blocks sometimes force 100%/alignfull */
+  flex: 0 0 auto;       /* don't stretch */
+  max-width: 100%;      /* images/content won’t overflow */
+}
+
+/* Kill common overflow offenders inside slides */
+.kadence-swiper-template.swiper .swiper-slide img,
+.kadence-swiper-template.swiper .swiper-slide > * {
+  max-width: 100%;
+}
+
+/* If Kadence adds alignfull/alignwide inside slides, neutralize it */
+.kadence-swiper-template.swiper .alignfull,
+.kadence-swiper-template.swiper .alignwide {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+/* Avoid 100vw causing horizontal scroll */
+.kadence-swiper-template.swiper [style*="100vw"] { width: 100% !important; }
+
 
 
 

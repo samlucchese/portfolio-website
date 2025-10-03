@@ -7,6 +7,34 @@ site-specific tweaks, overrides
 
 //General Theme Settings
 
+
+//Front Page 
+
+#hero-banner-row{
+	
+}
+
+#my-work-row{
+	#my-work-slider{
+		overflow: hidden;
+		
+		.my-work-swiper{
+			.swiper-wrapper{
+				.swiper-slide{
+					// max-width: 350px;
+					// width: 100%;
+					
+				}
+			}
+		}
+	}
+}
+
+
+
+
+
+
 //typography - headings 
  h1,
  h2,
